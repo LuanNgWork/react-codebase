@@ -1,0 +1,4 @@
+@use 'variables' as *; // Import variables (namespace optional if using *)
+@use 'mixins'; // Import mixins
+@use 'base'; // Import global base styles
+@use 'components/index'; // Import component styles

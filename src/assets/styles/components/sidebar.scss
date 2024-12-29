@@ -1,0 +1,107 @@
+@use '../variables';
+@use '../mixins';
+
+.sidebar {
+  width: variables.$sidebar-width;
+  height: 100vh;
+  background-color: variables.$primary-color; // Use namespace
+  color: variables.$text-color;
+  height: 100vh;
+  flex-direction: column;
+  @include mixins.flex-center; // Use namespace
+
+  &__header {
+    padding: 20px;
+    text-align: center;
+    font-size: variables.$title-font-size;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+
+    .sidebar__item {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: variables.$text-color;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: variables.$primary-hover-color;
+      }
+
+      &:active {
+        background-color: variables.$primary-active-color;
+        font-weight: bold;
+      }
+
+      &__icon {
+        margin-right: 10px;
+        font-size: variables.$icon-font-size;
+      }
+
+      &__label {
+        font-size: variables.$text-font-size;
+      }
+    }
+  }
+
+  &.collapsed {
+    width: variables.$sidebar-collapsed-width;
+  }
+
+  &__toggle {
+    background: none;
+    border: none;
+    color: variables.$text-color;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__footer {
+    padding: 20px;
+    text-align: center;
+
+    .sidebar__logout {
+      background: transparent;
+      border: 1px solid variables.$text-color;
+      color: variables.$text-color;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition:
+        background-color 0.3s,
+        color 0.3s;
+
+      &:hover {
+        background-color: variables.$text-color;
+        color: variables.$primary-color;
+      }
+    }
+  }
+}
+
+@media (max-width: variables.$width-sm) {
+  .sidebar {
+    width: variables.$sidebar-collapsed-width;
+
+    &__item {
+      .sidebar__label {
+        display: none;
+      }
+
+      .sidebar__icon {
+        margin-right: 0;
+      }
+    }
+  }
+}
